@@ -1,0 +1,6 @@
+# Ignore all keys directory 
+/my_keys
+/public_keys
+
+# Except this file
+!.gitignore

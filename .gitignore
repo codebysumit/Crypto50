@@ -1,0 +1,13 @@
+# Python cache files
+.pytest_cache
+__pycache__/
+
+# hybrid crypto Testing files
+/__testfiles__/testing_module/
+
+# Crypro50 database
+/database/CRIPTO50.db
+
+# User genaerated RSA keys file
+/assets/keys/my_keys
+/assets/keys/public_keys
