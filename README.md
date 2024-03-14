@@ -3,7 +3,6 @@
  ![Crypto50 GUI](https://github.com/codebysumit/Crypto50/assets/87431704/a165a7e5-a2ec-4c73-9bb5-377ff558e910)
 
 
-
 ### Description 📜:
 
 Crypto50 is user-friendly data encryption softwer build with python. that empowers you to encript and decript sensitive file and text data using a pawerful hybrid encryption aprroach. Crypto50 specially design to securely share your sensitive data through the internet i.e. email, cloud stroage etc. it offers both graphical (GUI) and command-line (CLI) interfaces and adheres to the Model-View-Presenter softwer design pattern.
@@ -23,18 +22,18 @@ Crypto50 is user-friendly data encryption softwer build with python. that empowe
 
 ![Hybrid Cryptography Diagram](https://github.com/codebysumit/Crypto50/assets/87431704/85bbedb5-ff00-4548-830f-7aa1f21e85f8)
 
-
 ------------------------------------------
 
 ### Dependencies 📦:
 - Python - 3.11.1
 - Packages :
-    - cryptography - 42.0.2
-    - Pillow - 10.2.0
-    - pytest - 8.0.0
-    - rsa - 4.9
+    - cryptography - 42.0.2 (https://pypi.org/project/cryptography/)
+    - rsa - 4.9 (https://pypi.org/project/rsa/)
+    - Pillow - 10.2.0 (https://pypi.org/project/pillow/)
+    - pytest - 8.0.0 (https://pypi.org/project/pytest/)
 
 ------------------------------------------
+
 
 ### Setup 🛠️:
 1. Clone GitHub repositories :
@@ -49,6 +48,7 @@ Crypto50 is user-friendly data encryption softwer build with python. that empowe
 
 ------------------------------------------
 
+
 ### Unit Testing 🧪: 
 - Open project root directory `Crypto50`
 - Run this command : `python test_project.py`
@@ -56,12 +56,12 @@ Crypto50 is user-friendly data encryption softwer build with python. that empowe
 
 ------------------------------------------
 
+
 ### Run Crypto50 GUI Interfaces 🖥️:
 - Open project root directory `Crypto50`
 - Run this command : `python project.py`
 
  ![Crypto50 GUI](https://github.com/codebysumit/Crypto50/assets/87431704/a165a7e5-a2ec-4c73-9bb5-377ff558e910)
-
 
 ------------------------------------------
 
@@ -126,6 +126,7 @@ Open project root directory `Crypto50` and according to your requirment run flow
 
 ------------------------------------------
 
+
 ### Command-line Argument List ⌨️:
 | Argument | Description |
 | -------- | ----------- |
@@ -140,8 +141,8 @@ Open project root directory `Crypto50` and according to your requirment run flow
 | --pub_key, -PUB | Get public key file path. |
 | --priv_key, -PRIV | Get private key file path. |
 
-
 ------------------------------------------
+
 
 ###  Features 🕹️:
 | Features | Crypto50 CLI | Crypto50 GUI  | hybrid_crypto (Crypto50 Module) |
@@ -162,8 +163,8 @@ Open project root directory `Crypto50` and according to your requirment run flow
 | :-----: | :---------: |
 | Windows 11 | ✅ |
 
-
 ------------------------------------------
+
 
 ### Tested Python Version 📝:
 | Python Version | Test Result |
