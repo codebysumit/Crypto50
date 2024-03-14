@@ -1,6 +1,7 @@
 # Crypto50 : Secure Your Data with Hybrid Encryption 
 
- ![Crypto50 GUI](https://github.com/me50/codebysumit/assets/87431704/a1c6674d-55e6-433b-ab87-fed4c0035f72)
+ ![Crypto50 GUI](https://github.com/codebysumit/Crypto50/assets/87431704/a165a7e5-a2ec-4c73-9bb5-377ff558e910)
+
 
 
 ### Description 📜:
@@ -20,7 +21,8 @@ Crypto50 is user-friendly data encryption softwer build with python. that empowe
 
 ### Crypto50 Hybrid Encryption and Decryption Diagram 📈:
 
-![Hybrid Cryptography Diagram](https://github.com/me50/codebysumit/assets/87431704/1ea554cb-f913-4f4e-9110-fda5b58a1fdd)
+![Hybrid Cryptography Diagram](https://github.com/codebysumit/Crypto50/assets/87431704/85bbedb5-ff00-4548-830f-7aa1f21e85f8)
+
 
 ------------------------------------------
 
@@ -58,7 +60,7 @@ Crypto50 is user-friendly data encryption softwer build with python. that empowe
 - Open project root directory `Crypto50`
 - Run this command : `python project.py`
 
- ![Crypto50 GUI](https://github.com/me50/codebysumit/assets/87431704/a1c6674d-55e6-433b-ab87-fed4c0035f72)
+ ![Crypto50 GUI](https://github.com/codebysumit/Crypto50/assets/87431704/a165a7e5-a2ec-4c73-9bb5-377ff558e910)
 
 
 ------------------------------------------
