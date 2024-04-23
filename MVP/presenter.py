@@ -129,10 +129,12 @@ class Presenter:
         """Open public keys foulder"""
         item = self.view.pub_keys_table.focus()
         startfile(pathlib.Path(self.view.pub_keys_table.item(item)["values"][4]))
-    
+
     def save_keys_file(self) -> None:
         """This function get user given private key and save it"""
-        input_priv_file_path = pathlib.Path(self.view.private_key_file_path_textbox.get())
+        input_priv_file_path = pathlib.Path(
+            self.view.private_key_file_path_textbox.get()
+        )
         input_pub_file_path = pathlib.Path(self.view.public_key_file_path_textbox.get())
         output_folder_path = con.MY_KEYS_DIRECTORY
 
@@ -547,14 +549,18 @@ class Presenter:
     # Validation Parts
     def validation_import_keys(self) -> None:
         """Validation import Keys."""
-        input_private_file_path = pathlib.Path(self.view.private_key_file_path_textbox.get())
-        input_public_file_path = pathlib.Path(self.view.public_key_file_path_textbox.get())
+        input_private_file_path = pathlib.Path(
+            self.view.private_key_file_path_textbox.get()
+        )
+        input_public_file_path = pathlib.Path(
+            self.view.public_key_file_path_textbox.get()
+        )
 
-        if (str(input_private_file_path.suffix) != ".pem"):
+        if str(input_private_file_path.suffix) != ".pem":
             self.view.error_messagebox(
                 "Input error", "This file is not a private key file."
             )
-        elif (str(input_public_file_path.suffix) != ".pem"):
+        elif str(input_public_file_path.suffix) != ".pem":
             self.view.error_messagebox(
                 "Input error", "This file is not a public key file."
             )
@@ -565,9 +571,7 @@ class Presenter:
             self.view.error_messagebox("Input error", "Public file is not exist.")
 
         else:
-            self.view.lodingWindow(
-                "Please wait few secents....", self.save_keys_file
-            )
+            self.view.lodingWindow("Please wait few secents....", self.save_keys_file)
 
     def validation_delete_my_keys(self) -> None:
         """Validation Delete Button Inputs."""

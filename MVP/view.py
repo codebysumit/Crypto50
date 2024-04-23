@@ -542,7 +542,7 @@ class Cripto50(tk.Tk):
         import_keys_window = tk.Toplevel(self)
         import_keys_window.geometry("500x250")
         import_keys_window.resizable(width=False, height=False)
-        import_keys_window.title("Add Keys")
+        import_keys_window.title("Import Keys")
         import_keys_window.config(bg=con.WINDOWS_BACKGROUNG_COLOR)
         import_keys_window.grab_set()
 

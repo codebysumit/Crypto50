@@ -30,11 +30,11 @@ class FileNotCreateError(Exception):
 
 
 def file_decryption(
-    encrypt_file_path: str | bytes | pathlib.Path,
-    output_folder_path: str | bytes | pathlib.Path,
-    priv_key_file_path: str | bytes | pathlib.Path,
-    pub_key_file_path: str | bytes | pathlib.Path,
-) -> str:
+    encrypt_file_path: str | bytes | pathlib.Path | os.PathLike,
+    output_folder_path: str | bytes | pathlib.Path | os.PathLike,
+    priv_key_file_path: str | bytes | pathlib.Path | os.PathLike,
+    pub_key_file_path: str | bytes | pathlib.Path | os.PathLike,
+) -> str | os.PathLike:
     """
     Decryption file using hybrid cryptography and return decrypt file path
 
@@ -86,7 +86,9 @@ def file_decryption(
 
     # Get encrypted data
     enc_data = get_inside(
-        encrypt_file_data, "-----BEGIN ENCRYPT DATA-----", "-----END ENCRYPT DATA-----"
+        encrypt_file_data,
+        "-----BEGIN ENCRYPT DATA-----\n",
+        "\n-----END ENCRYPT DATA-----",
     )
 
     if enc_data == -1:
@@ -95,8 +97,8 @@ def file_decryption(
     # Get encripted file extention
     enc_file_ext = get_inside(
         encrypt_file_data,
-        "-----BEGIN FILE EXTENSION-----",
-        "-----END FILE EXTENSION-----",
+        "-----BEGIN FILE EXTENSION-----\n",
+        "\n-----END FILE EXTENSION-----",
     )
 
     if enc_file_ext == -1:
@@ -107,8 +109,8 @@ def file_decryption(
     # Get encrypted key
     enc_key = get_inside(
         encrypt_file_data,
-        "-----BEGIN SYMMETRIC KEY-----",
-        "-----END SYMMETRIC KEY-----",
+        "-----BEGIN SYMMETRIC KEY-----\n",
+        "\n-----END SYMMETRIC KEY-----",
     )
 
     if enc_key == -1:
@@ -117,8 +119,8 @@ def file_decryption(
     # Get signature
     signature = get_inside(
         encrypt_file_data,
-        "-----BEGIN SIGNATURE-----",
-        "-----END SIGNATURE-----",
+        "-----BEGIN SIGNATURE-----\n",
+        "\n-----END SIGNATURE-----",
     )
 
     if signature == -1:

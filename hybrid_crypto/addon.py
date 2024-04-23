@@ -3,7 +3,7 @@ import re
 import hashlib
 
 
-def get_SHA256(file_path: str, file_extension: bool = False) -> str:
+def get_SHA256(file_path: str | os.PathLike, file_extension: bool = False) -> str:
     """
     Get SHA256 hash from file
 
@@ -48,8 +48,16 @@ def get_text_SHA256(*string: bytes) -> str:
 
 
 def get_inside(inp_str: str, init_str: str, end_str: str) -> str:
+    """
+    This function extracts text content between two specified string within a larger input string.
+    :param inp_str: The input string from which the content to  extracted.
+    :param init_str: The starting string that marks the beginning of the content to extract.
+    :param end_str: The end string that marks the end of the content to extract.
+
+    :rtype : string or int
+    """
     if match := re.search(
-        r"" + re.escape(init_str) + "\n(.*?)\n" + re.escape(end_str), inp_str, re.DOTALL
+        r"" + re.escape(init_str) + "(.*?)" + re.escape(end_str), inp_str, re.DOTALL
     ):
         return match.group(1)
     else:

@@ -12,11 +12,11 @@ class FileNotCreateError(Exception):
 
 # File encryption (hybrid_encription)
 def file_encryption(
-    input_file_path: str | bytes | pathlib.Path,
-    output_file_path: str | bytes | pathlib.Path,
-    pub_key_file_path: str | bytes | pathlib.Path,
-    priv_key_file_path: str | bytes | pathlib.Path,
-) -> str:
+    input_file_path: str | bytes | pathlib.Path | os.PathLike,
+    output_file_path: str | bytes | pathlib.Path | os.PathLike,
+    pub_key_file_path: str | bytes | pathlib.Path | os.PathLike,
+    priv_key_file_path: str | bytes | pathlib.Path | os.PathLike,
+) -> str | os.PathLike:
     """
     Encryption file using hybrid cryptography and return encrypt file path
 
@@ -113,10 +113,10 @@ def file_encryption(
 
 def text_encryption(
     input_str: str,
-    output_file_path: str | bytes | pathlib.Path,
-    pub_key_file_path: str | bytes | pathlib.Path,
-    priv_key_file_path: str | bytes | pathlib.Path,
-) -> str:
+    output_file_path: str | bytes | pathlib.Path | os.PathLike,
+    pub_key_file_path: str | bytes | pathlib.Path | os.PathLike,
+    priv_key_file_path: str | bytes | pathlib.Path | os.PathLike,
+) -> str | os.PathLike:
     """
     Encryption text using hybrid cryptography and return encrypt file path
 
