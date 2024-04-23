@@ -129,6 +129,61 @@ class Presenter:
         """Open public keys foulder"""
         item = self.view.pub_keys_table.focus()
         startfile(pathlib.Path(self.view.pub_keys_table.item(item)["values"][4]))
+    
+    def save_keys_file(self) -> None:
+        """This function get user given private key and save it"""
+        input_priv_file_path = pathlib.Path(self.view.private_key_file_path_textbox.get())
+        input_pub_file_path = pathlib.Path(self.view.public_key_file_path_textbox.get())
+        output_folder_path = con.MY_KEYS_DIRECTORY
+
+        try:
+            self.update_progressber(0)
+
+            with open(input_priv_file_path, "r") as file:
+                priv_key_data = file.read()
+            self.update_progressber(14.2857143)
+
+            with open(input_pub_file_path, "r") as file:
+                pub_key_data = file.read()
+            self.update_progressber(14.2857143)
+
+            dir_name = "KEYS_" + datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+            dir_path = pathlib.Path(output_folder_path).joinpath(dir_name)
+            dir_path.mkdir(parents=True, exist_ok=True)
+            self.update_progressber(14.2857143)
+
+            with open(dir_path.joinpath("private.pem"), "w") as file:
+                file.write(priv_key_data)
+            self.update_progressber(14.2857143)
+
+            with open(dir_path.joinpath("public.pem"), "w") as file:
+                file.write(pub_key_data)
+            self.update_progressber(14.2857143)
+
+            self.model.insert_my_key_data(
+                {
+                    "id": None,
+                    "folder_name": dir_name,
+                    "date_string": str(datetime.now().strftime("%d/%m/%Y %I:%M:%S %p")),
+                    "total_encryption_file_no": 0,
+                    "key_folder_path": dir_path.as_posix(),
+                }
+            )
+
+            self.update_progressber(14.2857143)
+
+            data = self.model.get_last_row_from_my_key()
+
+            self.update_progressber(14.2857143)
+
+            self.view.my_keys_table.insert(parent="", index="end", values=data)
+
+            self.update_progressber(14.2857143)
+
+            self.view.loding_window.destroy()
+
+        except Exception as e:
+            print(e)
 
     def save_pub_key_file(self) -> None:
         """This function get user given public key and save it"""
@@ -490,6 +545,30 @@ class Presenter:
         self.model.close_connection()
 
     # Validation Parts
+    def validation_import_keys(self) -> None:
+        """Validation import Keys."""
+        input_private_file_path = pathlib.Path(self.view.private_key_file_path_textbox.get())
+        input_public_file_path = pathlib.Path(self.view.public_key_file_path_textbox.get())
+
+        if (str(input_private_file_path.suffix) != ".pem"):
+            self.view.error_messagebox(
+                "Input error", "This file is not a private key file."
+            )
+        elif (str(input_public_file_path.suffix) != ".pem"):
+            self.view.error_messagebox(
+                "Input error", "This file is not a public key file."
+            )
+        elif pathlib.Path(input_private_file_path).exists() != True:
+            self.view.error_messagebox("Input error", "Private file is not exist.")
+
+        elif pathlib.Path(input_public_file_path).exists() != True:
+            self.view.error_messagebox("Input error", "Public file is not exist.")
+
+        else:
+            self.view.lodingWindow(
+                "Please wait few secents....", self.save_keys_file
+            )
+
     def validation_delete_my_keys(self) -> None:
         """Validation Delete Button Inputs."""
         selection = self.view.my_keys_table.selection()

@@ -17,6 +17,7 @@ class Presenter(Protocol):
     def validation_open_my_keys_folder(self) -> None: ...
     def validation_delete_public_key(self) -> None: ...
     def validation_open_public_keys_folder(self) -> None: ...
+    def validation_import_keys(self) -> None: ...
     def validation_add_public_key(self) -> None: ...
     def validation_edit_public_key(self) -> None: ...
     def validation_update_public_key(self) -> None: ...
@@ -293,13 +294,14 @@ class Cripto50(tk.Tk):
 
         self.my_key_manager_window.iconphoto(False, self.my_key_manager_icon)
 
+        # genarate new key button
         self.add_icon = ImageTk.PhotoImage(Image.open(con.PLUS_ICON).resize((10, 10)))
 
         genarate_new_key_button = tk.Button(
             self.my_key_manager_window,
             text=" Genrate New Keys",
             image=self.add_icon,
-            width=612,
+            width=290,
             pady=8,
             font=("Arial", 10, "bold"),
             background=con.PRIMARY_BUTTON_BACKGROUND_COLOR,
@@ -313,6 +315,24 @@ class Cripto50(tk.Tk):
         )
         genarate_new_key_button.place(x=20, y=5)
         genarate_new_key_button.image = self.add_icon
+
+        # import keys button
+        import_keys_button = tk.Button(
+            self.my_key_manager_window,
+            text=" Import Keys",
+            image=self.add_icon,
+            width=290,
+            pady=8,
+            font=("Arial", 10, "bold"),
+            background=con.PRIMARY_BUTTON_BACKGROUND_COLOR,
+            foreground=con.PRIMARY_BUTTON_TEXT_COLOR,
+            relief="groove",
+            borderwidth=4,
+            command=lambda: self.importKeys(presenter),
+            compound="left",
+        )
+        import_keys_button.place(x=335, y=5)
+        import_keys_button.image = self.add_icon
 
         # Tabile data
         self.my_keys_table = ttk.Treeview(
@@ -516,6 +536,99 @@ class Cripto50(tk.Tk):
             command=lambda: self.public_key_manager_window.destroy(),
         )
         close_key_button.place(x=582, y=412)
+
+    def importKeys(self, presenter: Presenter) -> None:
+        """Public Keys Adding Window"""
+        import_keys_window = tk.Toplevel(self)
+        import_keys_window.geometry("500x250")
+        import_keys_window.resizable(width=False, height=False)
+        import_keys_window.title("Add Keys")
+        import_keys_window.config(bg=con.WINDOWS_BACKGROUNG_COLOR)
+        import_keys_window.grab_set()
+
+        # Browes Private Key From section
+        file_open_text_label = tk.Label(
+            import_keys_window,
+            font=("Arial", 9),
+            text="Open Private Key From File:",
+            foreground=con.INPUT_LABEL_TEXT_COLOR,
+            background=con.WINDOWS_BACKGROUNG_COLOR,
+        )
+        file_open_text_label.place(x=20, y=20)
+
+        self.private_key_file_path_textbox = tk.Entry(
+            import_keys_window, font=("Arial", 10)
+        )
+        self.private_key_file_path_textbox.place(x=20, y=40, width=390, height=25)
+
+        browse_key_file = tk.Button(
+            import_keys_window,
+            text="Browse",
+            background=con.BUTTON_BACKGROUND_COLOR,
+            foreground=con.BUTTON_TEXT_COLOR,
+            relief="groove",
+            borderwidth=4,
+            command=lambda: self.open_specific_file(
+                self.private_key_file_path_textbox, filetypes=[("Peivate Keys", ".pem")]
+            ),
+        )
+        browse_key_file.place(x=415, y=40, width=60)
+
+        # Browes Public Key From section
+        file_open_text_label = tk.Label(
+            import_keys_window,
+            font=("Arial", 9),
+            text="Open Publuc Key From File:",
+            foreground=con.INPUT_LABEL_TEXT_COLOR,
+            background=con.WINDOWS_BACKGROUNG_COLOR,
+        )
+        file_open_text_label.place(x=20, y=100)
+
+        self.public_key_file_path_textbox = tk.Entry(
+            import_keys_window, font=("Arial", 10)
+        )
+        self.public_key_file_path_textbox.place(x=20, y=120, width=390, height=25)
+
+        browse_key_file = tk.Button(
+            import_keys_window,
+            text="Browse",
+            background=con.BUTTON_BACKGROUND_COLOR,
+            foreground=con.BUTTON_TEXT_COLOR,
+            relief="groove",
+            borderwidth=4,
+            command=lambda: self.open_specific_file(
+                self.public_key_file_path_textbox, filetypes=[("Public Keys", ".pem")]
+            ),
+        )
+        browse_key_file.place(x=415, y=120, width=60)
+
+        # Save Keys From File Button
+        import_keys_window_from_file_button = tk.Button(
+            import_keys_window,
+            text="Add Keys From File",
+            pady=5,
+            padx=10,
+            background=con.BUTTON_BACKGROUND_COLOR,
+            foreground=con.BUTTON_TEXT_COLOR,
+            relief="groove",
+            borderwidth=4,
+            command=presenter.validation_import_keys,
+        )
+        import_keys_window_from_file_button.place(x=275, y=200)
+
+        # Public Key Add Windrow Close Button
+        close_window_butt = tk.Button(
+            import_keys_window,
+            text="Close",
+            padx=10,
+            pady=5,
+            background=con.BUTTON_BACKGROUND_COLOR,
+            foreground=con.BUTTON_TEXT_COLOR,
+            relief="groove",
+            borderwidth=4,
+            command=lambda: import_keys_window.destroy(),
+        )
+        close_window_butt.place(x=418, y=200)
 
     def addPublicKey(self, presenter: Presenter) -> None:
         """Public Keys Adding Window"""
